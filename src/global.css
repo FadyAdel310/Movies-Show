@@ -4,7 +4,7 @@
     --secondary-black: #000508;
     --third-black: #000d14;
     --main-blue: #2196f3;
-    --secondary-blue: #03a9f4;
+    --secondary-blue: #69d2ff;
     --transparent: rgba(0, 0, 0, 0);
     --transparent-white: rgba(255, 255, 255, 0.5);
     --transparent-black: rgba(0, 0, 0, 0.9);
@@ -33,8 +33,9 @@
 
 body {
     margin: 0;
-    font-family: "Rubik", sans-serif;
+    font-family: "Rubik", sans-serif !important;
     height: 5000px;
+    background: var(--background-gradient);
 }
 
 /* Reset ======================== */
