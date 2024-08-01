@@ -7,6 +7,7 @@ import { global } from "./components/GlobalContext";
 import Header from "./components/Header";
 import { api } from "./components/ApiContext";
 import axios from "axios";
+import Landing from "./components/Landing";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -14,16 +15,16 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function App() {
-    const { changeLanguage } = useContext(global);
-    const { trendingMovies, movieToShow, popularMovies } = useContext(api);
+    const { setMovieById } = useContext(api);
+
+    // setMovieById(1048241);
+    // setMovieById(533535);
+    // setMovieById(1226578);
 
     return (
         <>
             <Header />
-            <button onClick={() => changeLanguage()}>lng</button>
-            {movieToShow !== null && (
-                <h1 style={{ color: "white" }}>{movieToShow.title}</h1>
-            )}
+            <Landing />
         </>
     );
 }

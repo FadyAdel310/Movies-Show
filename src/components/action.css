@@ -1,0 +1,108 @@
+.rate {
+    display: flex;
+    background-color: var(--brown);
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.rate .star {
+    color: rgb(255, 255, 0);
+}
+
+.watch-btn {
+    color: var(--main-blue);
+    text-decoration: none;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 10px 12px;
+    border-radius: 22px;
+    border: 2px solid var(--white);
+    transition: var(--main-transition);
+    gap: 10px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.watch-btn.in-active {
+    cursor: no-drop;
+    color: var(--gray);
+    border-color: var(--gray);
+    position: relative;
+}
+
+.watch-btn.in-active::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    z-index: 4;
+    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--brown) transparent transparent;
+    opacity: 0;
+    transition: var(--main-transition);
+}
+.watch-btn.in-active::after {
+    content: "";
+    background-color: var(--brown);
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: -12px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 9px;
+    border-radius: 12px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: var(--main-transition);
+}
+
+.watch-btn.in-active.en-US::after {
+    content: "Not Available For This Language";
+}
+.watch-btn.in-active.ar::after {
+    content: "الرابط غير متاح لهذه اللغة";
+}
+
+.watch-btn.in-active:hover::after,
+.watch-btn.in-active:hover::before {
+    opacity: 1;
+}
+
+.watch-btn:hover {
+    border-color: var(--main-blue);
+}
+
+.watch-btn.in-active {
+    border-color: var(--gray);
+}
+
+.watch-btn .watch-icon {
+    font-size: 26px;
+}
+
+.watch-btn span {
+    margin: 0;
+    font-weight: 500;
+}
+
+.likes {
+    min-width: 120px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    border-right: 3px solid var(--main-blue);
+    color: var(--main-blue);
+}
+
+@media (max-width: 575px) {
+}

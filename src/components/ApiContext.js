@@ -34,10 +34,9 @@ const ApiContext = ({ children }) => {
     const [popularMovies, setPopularMovies] = useState(null);
 
     const getRandomMovie = async () => {
-        let pageNum = getRandomInt(0, 500);
         axios
             .get(
-                `https://api.themoviedb.org/3/trending/movie/day?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=${pageNum}`
+                `https://api.themoviedb.org/3/trending/movie/day?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=1`
             )
             .then((response) => {
                 let movieNum = getRandomInt(
@@ -45,6 +44,18 @@ const ApiContext = ({ children }) => {
                     response.data.results.length - 1
                 );
                 const movie = response.data.results[movieNum];
+                setMovieById(movie.id);
+            });
+    };
+
+    const setMovieById = async (id) => {
+        //
+        axios
+            .get(
+                `https://api.themoviedb.org/3/movie/${id}?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}`
+            )
+            .then((response) => {
+                const movie = response.data;
                 setMovieToShow(movie);
             });
     };
@@ -69,6 +80,10 @@ const ApiContext = ({ children }) => {
             });
     };
 
+    const changeLanguageOfRandom = async () => {
+        movieToShow !== null && setMovieById(movieToShow.id);
+    };
+
     useEffect(() => {
         getPopularMovies();
     }, [info.language]);
@@ -79,10 +94,15 @@ const ApiContext = ({ children }) => {
 
     useEffect(() => {
         getRandomMovie();
+    }, []);
+    useEffect(() => {
+        changeLanguageOfRandom();
     }, [info.language]);
 
     return (
-        <api.Provider value={{ movieToShow, trendingMovies, popularMovies }}>
+        <api.Provider
+            value={{ movieToShow, trendingMovies, popularMovies, setMovieById }}
+        >
             {children}
         </api.Provider>
     );

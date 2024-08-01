@@ -1,6 +1,9 @@
 nav {
     background-color: var(--transparent-black);
     box-shadow: var(--section-shadow);
+    position: absolute;
+    z-index: 1;
+    width: 100%;
 }
 
 nav .container > div {
@@ -21,7 +24,7 @@ nav .links li {
     cursor: pointer;
     position: relative;
 }
-nav .links li::after {
+nav .links > li::after {
     content: "";
     width: 5px;
     height: 5px;
@@ -34,8 +37,9 @@ nav .links li::after {
     opacity: 0;
     transition: var(--main-transition);
 }
-nav .links li:hover,
-nav .links li:active {
+nav .links > li:hover,
+nav .links > li:active,
+nav .links .search-icon:hover {
     color: var(--secondary-blue) !important;
     border-color: var(--secondary-blue);
 }
@@ -44,9 +48,28 @@ nav .links li:active::after {
     opacity: 1;
 }
 
+nav .tools {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0 25px;
+}
+
 nav .search-icon {
     border-bottom: 1px solid var(--main-blue);
-    margin-left: 25px;
+}
+
+nav .language-icon {
+    box-shadow: 0px 0px 4px 1px rgb(255 255 255 / 85%);
+    border-radius: 8px;
+    position: relative;
+    /* border: 1px solid white; */
+    top: 3px;
+}
+nav .language-icon:hover {
+    box-shadow: 0px 0px 4px 2px white;
+    color: white;
 }
 
 nav button {
@@ -77,9 +100,8 @@ nav button {
         padding-bottom: 10px;
         gap: 0;
         padding: 10px;
-        
     }
-    
+
     nav .mobile-menu-true {
         opacity: 1;
         height: fit-content;
@@ -87,6 +109,17 @@ nav button {
     nav .search-icon {
         border-bottom: none;
         margin-left: 0px;
+    }
+    nav .tools {
+        margin: 0 auto;
+    }
+
+    nav .search-icon {
+        border-bottom: 1px solid var(--main-blue);
+    }
+
+    nav .language-icon {
+        top: 0;
     }
 }
 

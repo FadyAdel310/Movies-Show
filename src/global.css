@@ -7,9 +7,10 @@
     --secondary-blue: #69d2ff;
     --transparent: rgba(0, 0, 0, 0);
     --transparent-white: rgba(255, 255, 255, 0.5);
-    --transparent-black: rgba(0, 0, 0, 0.9);
+    --transparent-black: rgba(0, 0, 0, 0.85);
     --gray: #9e9e9e;
     --yellow: #ffeb3b;
+    --brown: #2e2b29;
 
     --scroll-bg-color: var(--white);
     --scroll-main-color: var(--secondary-blue);
@@ -21,6 +22,7 @@
         var(--third-black) 50%,
         var(--secondary-black) 100%
     );
+    --section-gradient: linear-gradient(0deg, yellow 50%);
     --line-gradient: linear-gradient(
         90deg,
         var(--main-blue) 0%,
@@ -36,6 +38,13 @@ body {
     font-family: "Rubik", sans-serif !important;
     height: 5000px;
     background: var(--background-gradient);
+}
+
+/* Custom editing container over bootsrap */
+@media (max-width: 767px) {
+    .container {
+        max-width: 100% !important;
+    }
 }
 
 /* Reset ======================== */

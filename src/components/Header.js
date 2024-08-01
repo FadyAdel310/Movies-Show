@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const EnglishHeader = () => {
-    const { logoPath } = useContext(global);
+    const { changeLanguage, logoPath } = useContext(global);
     const [mobileShow, setMobileShow] = useState(false);
     const toggleMenuShow = () => {
         if (mobileShow) setMobileShow(false);
@@ -24,9 +24,17 @@ const EnglishHeader = () => {
                         <li className="p-2 fs-4">Trending</li>
                         <li className="p-2 fs-4">Top Rated</li>
                         <li className="p-2 fs-4">Up Coming</li>
-                        <li className="p-2 fs-3 search-icon">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </li>
+                        <div className="tools">
+                            <li className="pb-2 px-2 fs-3 search-icon">
+                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </li>
+                            <li
+                                onClick={() => changeLanguage()}
+                                className="py-1 px-2 fs-6 language-icon"
+                            >
+                                عربي
+                            </li>
+                        </div>
                     </ul>
                     <button onClick={toggleMenuShow} className="fs-3">
                         <FontAwesomeIcon icon={faBars} />
@@ -38,7 +46,7 @@ const EnglishHeader = () => {
 };
 
 const ArabicHeader = () => {
-    const { logoPath } = useContext(global);
+    const { logoPath, changeLanguage } = useContext(global);
     const [mobileShow, setMobileShow] = useState(false);
     const toggleMenuShow = () => {
         if (mobileShow) setMobileShow(false);
@@ -60,9 +68,17 @@ const ArabicHeader = () => {
                         <li className="p-2 fs-4">المحتوي الرائج</li>
                         <li className="p-2 fs-4">الأعلي تقييما</li>
                         <li className="p-2 fs-4">القادم</li>
-                        <li className="p-2 fs-3 search-icon">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </li>
+                        <div className="tools">
+                            <li className="pb-2 px-2 fs-3 search-icon">
+                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </li>
+                            <li
+                                onClick={() => changeLanguage()}
+                                className="py-1 px-2 fs-6 language-icon"
+                            >
+                                English
+                            </li>
+                        </div>
                     </ul>
                     <button onClick={toggleMenuShow} className="fs-3">
                         <FontAwesomeIcon icon={faBars} />
