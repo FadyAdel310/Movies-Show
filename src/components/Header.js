@@ -16,14 +16,41 @@ const EnglishHeader = () => {
         <nav>
             <div className="container">
                 <div className="d-flex justify-content-between justify-content-lg-center align-items-center position-relative">
-                    <img src={logoPath} className="logo" />
+                    <a href="/">
+                        <img src={logoPath} className="logo" />
+                    </a>
                     <ul
                         className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center `}
                     >
-                        <li className="p-2 fs-4">Popular</li>
-                        <li className="p-2 fs-4">Trending</li>
-                        <li className="p-2 fs-4">Top Rated</li>
-                        <li className="p-2 fs-4">Up Coming</li>
+                        <li className="p-2 fs-4">
+                            <a className="text-decoration-none" href="#popular">
+                                Popular
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#trending"
+                            >
+                                Trending
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#topRated"
+                            >
+                                Top Rated
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#upComing"
+                            >
+                                Up Coming
+                            </a>
+                        </li>
                         <div className="tools">
                             <li className="pb-2 px-2 fs-3 search-icon">
                                 <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -56,18 +83,46 @@ const ArabicHeader = () => {
         <nav>
             <div className="container">
                 <div className="d-flex justify-content-between justify-content-lg-center align-items-center position-relative">
-                    <img
-                        src={logoPath}
-                        className="logo"
-                        style={{ marginLeft: "25px" }}
-                    />
+                    <a href="/">
+                        <img
+                            src={logoPath}
+                            className="logo"
+                            style={{ marginLeft: "25px" }}
+                        />
+                    </a>
                     <ul
-                        className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center `}
+                        className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center`}
                     >
-                        <li className="p-2 fs-4">الشائع</li>
-                        <li className="p-2 fs-4">المحتوي الرائج</li>
-                        <li className="p-2 fs-4">الأعلي تقييما</li>
-                        <li className="p-2 fs-4">القادم</li>
+                        <li className="p-2 fs-4">
+                            <a className="text-decoration-none" href="#popular">
+                                الشائع
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#trending"
+                            >
+                                المحتوي الرائج
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#topRated"
+                            >
+                                الأعلي تقييما
+                            </a>
+                        </li>
+                        <li className="p-2 fs-4">
+                            <a
+                                className="text-decoration-none"
+                                href="#upComing"
+                            >
+                                القادم
+                            </a>
+                        </li>
+
                         <div className="tools">
                             <li className="pb-2 px-2 fs-3 search-icon">
                                 <FontAwesomeIcon icon={faMagnifyingGlass} />

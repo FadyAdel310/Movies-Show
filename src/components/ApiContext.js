@@ -28,10 +28,13 @@ function detectLanguage(text) {
 const api = createContext();
 const ApiContext = ({ children }) => {
     const { info } = useContext(global);
-
     const [movieToShow, setMovieToShow] = useState(null);
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [popularMovies, setPopularMovies] = useState(null);
+    const [popularState, setPopularState] = useState({
+        popularPage: 1,
+        type: "first",
+    });
 
     const getRandomMovie = async () => {
         axios
@@ -70,10 +73,10 @@ const ApiContext = ({ children }) => {
             });
     };
 
-    const getPopularMovies = async () => {
+    const getPopularMovies = async (pageNumber) => {
         axios
             .get(
-                `https://api.themoviedb.org/3/movie/popular?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=1`
+                `https://api.themoviedb.org/3/movie/popular?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=${pageNumber}`
             )
             .then((response) => {
                 setPopularMovies(response.data);
@@ -84,9 +87,12 @@ const ApiContext = ({ children }) => {
         movieToShow !== null && setMovieById(movieToShow.id);
     };
 
+    // useEffect(() => {
+    //     getPopularMovies(1);
+    // }, []);
     useEffect(() => {
-        getPopularMovies();
-    }, [info.language]);
+        getPopularMovies(popularState.popularPage);
+    }, [info.language, popularState.popularPage]);
 
     useEffect(() => {
         getTrendingMovies();
@@ -101,7 +107,14 @@ const ApiContext = ({ children }) => {
 
     return (
         <api.Provider
-            value={{ movieToShow, trendingMovies, popularMovies, setMovieById }}
+            value={{
+                movieToShow,
+                trendingMovies,
+                popularMovies,
+                popularState,
+                setMovieById,
+                setPopularState,
+            }}
         >
             {children}
         </api.Provider>

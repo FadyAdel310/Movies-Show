@@ -48,7 +48,11 @@
     width: fit-content;
     border-left: 4px solid var(--main-blue);
 }
-
+.Landing h4 {
+    text-align: center;
+    padding: 20px;
+    color: var(--transparent-white);
+}
 .Landing .action {
     padding: 0;
     display: flex;
