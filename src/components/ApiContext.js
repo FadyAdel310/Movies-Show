@@ -12,14 +12,20 @@ const api = createContext();
 const ApiContext = ({ children }) => {
     const { info } = useContext(global);
     const [movieToShow, setMovieToShow] = useState(null);
-    const [trendingMovies, setTrendingMovies] = useState(null);
+    // =============================
     const [popularMovies, setPopularMovies] = useState(null);
+    const [trendingMovies, setTrendingMovies] = useState(null);
+    const [topRatedMovies, setTopRatedMovies] = useState(null);
     // =============================
     const [popularState, setPopularState] = useState({
         page: 1,
         type: "first",
     });
     const [trendState, setTrendState] = useState({
+        page: 1,
+        type: "first",
+    });
+    const [topRatedState, setTopRatedState] = useState({
         page: 1,
         type: "first",
     });
@@ -70,9 +76,24 @@ const ApiContext = ({ children }) => {
             });
     };
 
+    const getTopRatedMovies = async (pageNumber) => {
+        //
+        axios
+            .get(
+                `https://api.themoviedb.org/3/movie/top_rated?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=${pageNumber}`
+            )
+            .then((response) => {
+                setTopRatedMovies(response.data);
+            });
+    };
+
     useEffect(() => {
         getRandomMovie();
     }, []);
+
+    useEffect(() => {
+        movieToShow !== null && setMovieById(movieToShow.id);
+    }, [info.language]);
 
     useEffect(() => {
         getPopularMovies(popularState.page);
@@ -83,19 +104,22 @@ const ApiContext = ({ children }) => {
     }, [info.language, trendState.page]);
 
     useEffect(() => {
-        movieToShow !== null && setMovieById(movieToShow.id);
-    }, [info.language]);
+        getTopRatedMovies(topRatedState.page);
+    }, [info.language, topRatedState.page]);
 
     return (
         <api.Provider
             value={{
                 movieToShow,
-                trendingMovies,
                 popularMovies,
                 popularState,
+                trendingMovies,
                 trendState,
-                setTrendState,
+                topRatedMovies,
+                topRatedState,
                 setPopularState,
+                setTrendState,
+                setTopRatedState,
                 setMovieById,
             }}
         >

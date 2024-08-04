@@ -21,17 +21,19 @@ const getApiPageFromPaginationPage = (paginationPage) => {
 const CustomPagination = ({ title, customState, customMovies }) => {
     const { info } = useContext(global);
 
-    const { setTrendState, setPopularState } = useContext(api);
+    const { setTrendState, setPopularState, setTopRatedState } =
+        useContext(api);
 
     let setCustomState = null;
+
     if (title === "popular") {
         setCustomState = setPopularState;
     } else if (title === "trending") {
         setCustomState = setTrendState;
     } else if (title === "topRated") {
-        setCustomState = setTrendState;
+        setCustomState = setTopRatedState;
     } else if (title === "upComing") {
-        setCustomState = setTrendState;
+        setCustomState = null;
     }
 
     const handlePageClick = (event) => {
@@ -42,22 +44,35 @@ const CustomPagination = ({ title, customState, customMovies }) => {
         }
     };
 
+    const paginationPagesCount =
+        customMovies !== null
+            ? customMovies.total_pages > 500
+                ? 1000
+                : customMovies.total_pages * 2
+            : 0;
+
     if (info.language === "en-US") {
         return (
             <>
-                <EnglishPagination
-                    handlePageClick={handlePageClick}
-                    customState={customState}
-                />
+                {paginationPagesCount !== 0 && (
+                    <EnglishPagination
+                        handlePageClick={handlePageClick}
+                        customState={customState}
+                        pageCount={paginationPagesCount}
+                    />
+                )}
             </>
         );
     } else {
         return (
             <>
-                <ArabicPagination
-                    handlePageClick={handlePageClick}
-                    customState={customState}
-                />
+                {paginationPagesCount !== 0 && (
+                    <ArabicPagination
+                        handlePageClick={handlePageClick}
+                        customState={customState}
+                        pageCount={paginationPagesCount}
+                    />
+                )}
             </>
         );
     }
@@ -65,19 +80,20 @@ const CustomPagination = ({ title, customState, customMovies }) => {
 
 export default CustomPagination;
 
-const EnglishPagination = ({ handlePageClick, customState }) => {
+const EnglishPagination = ({ handlePageClick, customState, pageCount }) => {
     let loadingPage = 0;
     if (customState.type === "first") {
         loadingPage = customState.page * 2 - 1;
     } else if (customState.type === "last") {
         loadingPage = customState.page * 2;
     }
+
     return (
         <>
             <ReactPaginate
                 breakLabel="..."
                 onPageChange={handlePageClick}
-                pageCount={1000}
+                pageCount={pageCount}
                 className="custom-pagination"
                 pageRangeDisplayed={2}
                 pageClassName="custom-pagination-li"
@@ -112,7 +128,7 @@ const EnglishPagination = ({ handlePageClick, customState }) => {
     );
 };
 
-const ArabicPagination = ({ handlePageClick, customState }) => {
+const ArabicPagination = ({ handlePageClick, customState, pageCount }) => {
     let loadingPage = 0;
     if (customState.type === "first") {
         loadingPage = customState.page * 2 - 1;
@@ -124,7 +140,7 @@ const ArabicPagination = ({ handlePageClick, customState }) => {
             <ReactPaginate
                 breakLabel="..."
                 onPageChange={handlePageClick}
-                pageCount={1000}
+                pageCount={pageCount}
                 className="custom-pagination"
                 pageRangeDisplayed={2}
                 pageClassName="custom-pagination-li"

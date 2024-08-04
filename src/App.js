@@ -30,6 +30,7 @@ function App() {
             <Landing />
             <FullPageViewer title="popular" />
             <FullPageViewer title="trending" />
+            <FullPageViewer title="topRated" />
         </>
     );
 }

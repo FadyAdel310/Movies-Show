@@ -16,11 +16,13 @@ import { Fade } from "react-awesome-reveal";
 const FullPageViewer = ({ title }) => {
     const { info } = useContext(global);
     const {
+        setMovieById,
         popularMovies,
         popularState,
         trendingMovies,
         trendState,
-        setMovieById,
+        topRatedMovies,
+        topRatedState,
     } = useContext(api);
 
     let customState = null;
@@ -33,8 +35,8 @@ const FullPageViewer = ({ title }) => {
         customState = trendState;
         customMovies = trendingMovies;
     } else if (title === "topRated") {
-        customState = trendState;
-        customMovies = trendingMovies;
+        customState = topRatedState;
+        customMovies = topRatedMovies;
     } else if (title === "upComing") {
         customState = trendState;
         customMovies = trendingMovies;
