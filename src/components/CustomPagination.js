@@ -18,14 +18,27 @@ const getApiPageFromPaginationPage = (paginationPage) => {
     }
 };
 
-const CustomPagination = () => {
+const CustomPagination = ({ title, customState, customMovies }) => {
     const { info } = useContext(global);
-    const { popularMovies, setPopularState, popularState } = useContext(api);
+
+    const { setTrendState, setPopularState } = useContext(api);
+
+    let setCustomState = null;
+    if (title === "popular") {
+        setCustomState = setPopularState;
+    } else if (title === "trending") {
+        setCustomState = setTrendState;
+    } else if (title === "topRated") {
+        setCustomState = setTrendState;
+    } else if (title === "upComing") {
+        setCustomState = setTrendState;
+    }
+
     const handlePageClick = (event) => {
         const pageNumber = event.selected + 1;
         const { value, type } = getApiPageFromPaginationPage(pageNumber);
-        if (popularMovies !== null) {
-            setPopularState({ popularPage: value, type: type });
+        if (customMovies !== null) {
+            setCustomState({ page: value, type: type });
         }
     };
 
@@ -34,7 +47,7 @@ const CustomPagination = () => {
             <>
                 <EnglishPagination
                     handlePageClick={handlePageClick}
-                    popularState={popularState}
+                    customState={customState}
                 />
             </>
         );
@@ -43,7 +56,7 @@ const CustomPagination = () => {
             <>
                 <ArabicPagination
                     handlePageClick={handlePageClick}
-                    popularState={popularState}
+                    customState={customState}
                 />
             </>
         );
@@ -52,12 +65,12 @@ const CustomPagination = () => {
 
 export default CustomPagination;
 
-const EnglishPagination = ({ handlePageClick, popularState }) => {
+const EnglishPagination = ({ handlePageClick, customState }) => {
     let loadingPage = 0;
-    if (popularState.type === "first") {
-        loadingPage = popularState.popularPage * 2 - 1;
-    } else if (popularState.type === "last") {
-        loadingPage = popularState.popularPage * 2;
+    if (customState.type === "first") {
+        loadingPage = customState.page * 2 - 1;
+    } else if (customState.type === "last") {
+        loadingPage = customState.page * 2;
     }
     return (
         <>
@@ -99,12 +112,12 @@ const EnglishPagination = ({ handlePageClick, popularState }) => {
     );
 };
 
-const ArabicPagination = ({ handlePageClick, popularState }) => {
+const ArabicPagination = ({ handlePageClick, customState }) => {
     let loadingPage = 0;
-    if (popularState.type === "first") {
-        loadingPage = popularState.popularPage * 2 - 1;
-    } else if (popularState.type === "last") {
-        loadingPage = popularState.popularPage * 2;
+    if (customState.type === "first") {
+        loadingPage = customState.page * 2 - 1;
+    } else if (customState.type === "last") {
+        loadingPage = customState.page * 2;
     }
     return (
         <div dir="rtl">

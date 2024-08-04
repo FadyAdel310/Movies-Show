@@ -7,7 +7,8 @@ import Header from "./components/Header";
 import { api } from "./components/ApiContext";
 import axios from "axios";
 import Landing from "./components/Landing";
-import PopularPage from "./components/PopularPage";
+import FullPageViewer from "./components/FullPageViewer";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -19,13 +20,16 @@ function App() {
 
     // setMovieById(1048241);
     // setMovieById(533535);
-    // setMovieById(653346);س
-
+    useEffect(() => {
+        // setMovieById(653346);
+    }, []);
+    // console.log("test");
     return (
         <>
             <Header />
             <Landing />
-            <PopularPage />
+            <FullPageViewer title="popular" />
+            <FullPageViewer title="trending" />
         </>
     );
 }

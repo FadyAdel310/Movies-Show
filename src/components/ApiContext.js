@@ -8,31 +8,19 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function detectLanguage(text) {
-    // Regular expression to match Arabic characters
-    var arabicPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/;
-
-    // Regular expression to match English characters
-    var englishPattern = /[a-zA-Z]/;
-
-    // Check if the text contains Arabic characters
-    if (arabicPattern.test(text)) {
-        return 1; // Arabic detected
-    } else if (englishPattern.test(text)) {
-        return 0; // English detected
-    } else {
-        return -1; // Neither Arabic nor English detected (could be another language or symbols)
-    }
-}
-
 const api = createContext();
 const ApiContext = ({ children }) => {
     const { info } = useContext(global);
     const [movieToShow, setMovieToShow] = useState(null);
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [popularMovies, setPopularMovies] = useState(null);
+    // =============================
     const [popularState, setPopularState] = useState({
-        popularPage: 1,
+        page: 1,
+        type: "first",
+    });
+    const [trendState, setTrendState] = useState({
+        page: 1,
         type: "first",
     });
 
@@ -51,8 +39,7 @@ const ApiContext = ({ children }) => {
             });
     };
 
-    const setMovieById = async (id) => {
-        //
+    const setMovieById = (id) => {
         axios
             .get(
                 `https://api.themoviedb.org/3/movie/${id}?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}`
@@ -63,10 +50,10 @@ const ApiContext = ({ children }) => {
             });
     };
 
-    const getTrendingMovies = async () => {
+    const getTrendingMovies = async (pageNumber) => {
         axios
             .get(
-                `https://api.themoviedb.org/3/trending/movie/day?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=1`
+                `https://api.themoviedb.org/3/trending/movie/day?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=${pageNumber}`
             )
             .then((response) => {
                 setTrendingMovies(response.data);
@@ -83,26 +70,20 @@ const ApiContext = ({ children }) => {
             });
     };
 
-    const changeLanguageOfRandom = async () => {
-        movieToShow !== null && setMovieById(movieToShow.id);
-    };
-
-    // useEffect(() => {
-    //     getPopularMovies(1);
-    // }, []);
-    useEffect(() => {
-        getPopularMovies(popularState.popularPage);
-    }, [info.language, popularState.popularPage]);
-
-    useEffect(() => {
-        getTrendingMovies();
-    }, [info.language]);
-
     useEffect(() => {
         getRandomMovie();
     }, []);
+
     useEffect(() => {
-        changeLanguageOfRandom();
+        getPopularMovies(popularState.page);
+    }, [info.language, popularState.page]);
+
+    useEffect(() => {
+        getTrendingMovies(trendState.page);
+    }, [info.language, trendState.page]);
+
+    useEffect(() => {
+        movieToShow !== null && setMovieById(movieToShow.id);
     }, [info.language]);
 
     return (
@@ -112,8 +93,10 @@ const ApiContext = ({ children }) => {
                 trendingMovies,
                 popularMovies,
                 popularState,
-                setMovieById,
+                trendState,
+                setTrendState,
                 setPopularState,
+                setMovieById,
             }}
         >
             {children}

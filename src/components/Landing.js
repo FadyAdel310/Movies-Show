@@ -1,5 +1,3 @@
-import testImg from "../assets/landing.jpg";
-
 import React, { useContext } from "react";
 import { global } from "./GlobalContext";
 import { api } from "./ApiContext";
