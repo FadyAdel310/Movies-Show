@@ -18,6 +18,10 @@ const getApiPageFromPaginationPage = (paginationPage) => {
     }
 };
 
+const ttt = () => {
+    return <h1>test</h1>;
+};
+
 const CustomPagination = ({ title, customState, customMovies }) => {
     const { info } = useContext(global);
 
@@ -55,32 +59,42 @@ const CustomPagination = ({ title, customState, customMovies }) => {
         return (
             <>
                 {paginationPagesCount !== 0 && (
-                    <EnglishPagination
+                    <Pagination
                         handlePageClick={handlePageClick}
                         customState={customState}
                         pageCount={paginationPagesCount}
+                        previousLabelValue={previousLabelEnglish()}
+                        nextLabelValue={nextLabelEnglish()}
                     />
                 )}
             </>
         );
     } else {
         return (
-            <>
+            <div dir="rtl">
                 {paginationPagesCount !== 0 && (
-                    <ArabicPagination
+                    <Pagination
                         handlePageClick={handlePageClick}
                         customState={customState}
                         pageCount={paginationPagesCount}
+                        previousLabelValue={previousLabelArabic()}
+                        nextLabelValue={nextLabelArabic()}
                     />
                 )}
-            </>
+            </div>
         );
     }
 };
 
 export default CustomPagination;
 
-const EnglishPagination = ({ handlePageClick, customState, pageCount }) => {
+const Pagination = ({
+    handlePageClick,
+    customState,
+    pageCount,
+    previousLabelValue,
+    nextLabelValue,
+}) => {
     let loadingPage = 0;
     if (customState.type === "first") {
         loadingPage = customState.page * 2 - 1;
@@ -89,88 +103,113 @@ const EnglishPagination = ({ handlePageClick, customState, pageCount }) => {
     }
 
     return (
-        <>
-            <ReactPaginate
-                breakLabel="..."
-                onPageChange={handlePageClick}
-                pageCount={pageCount}
-                className="custom-pagination"
-                pageRangeDisplayed={2}
-                pageClassName="custom-pagination-li"
-                breakClassName="custom-pagination-li"
-                breakLinkClassName="custom-pagination-a"
-                pageLinkClassName="custom-pagination-a"
-                previousLabel={
-                    <div className="step-btn">
-                        <span>
-                            <FontAwesomeIcon icon={faCircleChevronLeft} />
-                        </span>
-                        <p>Previous</p>
-                    </div>
-                }
-                previousClassName="prev-page"
-                nextClassName="next-page"
-                previousLinkClassName="text-decoration-none"
-                nextLinkClassName="text-decoration-none"
-                nextLabel={
-                    <div className="step-btn">
-                        <p>Next</p>
-                        <span>
-                            <FontAwesomeIcon icon={faCircleChevronRight} />
-                        </span>
-                    </div>
-                }
-                activeClassName="active"
-                disabledClassName="disabled"
-                initialPage={loadingPage - 1}
-            />
-        </>
+        <ReactPaginate
+            breakLabel="..."
+            onPageChange={handlePageClick}
+            pageCount={pageCount}
+            className="custom-pagination"
+            pageRangeDisplayed={2}
+            pageClassName="custom-pagination-li"
+            breakClassName="custom-pagination-li"
+            breakLinkClassName="custom-pagination-a"
+            pageLinkClassName="custom-pagination-a"
+            previousLabel={previousLabelValue}
+            previousClassName="prev-page"
+            nextClassName="next-page"
+            previousLinkClassName="text-decoration-none"
+            nextLinkClassName="text-decoration-none"
+            nextLabel={nextLabelValue}
+            activeClassName="active"
+            disabledClassName="disabled"
+            initialPage={loadingPage - 1}
+        />
     );
 };
 
-const ArabicPagination = ({ handlePageClick, customState, pageCount }) => {
-    let loadingPage = 0;
-    if (customState.type === "first") {
-        loadingPage = customState.page * 2 - 1;
-    } else if (customState.type === "last") {
-        loadingPage = customState.page * 2;
-    }
+// const ArabicPagination = ({ handlePageClick, customState, pageCount }) => {
+//     let loadingPage = 0;
+//     if (customState.type === "first") {
+//         loadingPage = customState.page * 2 - 1;
+//     } else if (customState.type === "last") {
+//         loadingPage = customState.page * 2;
+//     }
+//     return (
+//         <div dir="rtl">
+//             <ReactPaginate
+//                 breakLabel="..."
+//                 onPageChange={handlePageClick}
+//                 pageCount={pageCount}
+//                 className="custom-pagination"
+//                 pageRangeDisplayed={2}
+//                 pageClassName="custom-pagination-li"
+//                 breakClassName="custom-pagination-li"
+//                 breakLinkClassName="custom-pagination-a"
+//                 pageLinkClassName="custom-pagination-a"
+//                 previousLabel={
+//                     <div className="step-btn">
+//                         <span>
+//                             <FontAwesomeIcon icon={faCircleChevronRight} />
+//                         </span>
+//                         <p>السابق</p>
+//                     </div>
+//                 }
+//                 previousClassName="prev-page"
+//                 nextClassName="next-page"
+//                 previousLinkClassName="text-decoration-none"
+//                 nextLinkClassName="text-decoration-none"
+//                 nextLabel={
+//                     <div className="step-btn">
+//                         <p>التالي</p>
+//                         <span>
+//                             <FontAwesomeIcon icon={faCircleChevronLeft} />
+//                         </span>
+//                     </div>
+//                 }
+//                 activeClassName="active"
+//                 disabledClassName="disabled"
+//                 initialPage={loadingPage - 1}
+//             />
+//         </div>
+//     );
+// };
+
+const previousLabelEnglish = () => {
     return (
-        <div dir="rtl">
-            <ReactPaginate
-                breakLabel="..."
-                onPageChange={handlePageClick}
-                pageCount={pageCount}
-                className="custom-pagination"
-                pageRangeDisplayed={2}
-                pageClassName="custom-pagination-li"
-                breakClassName="custom-pagination-li"
-                breakLinkClassName="custom-pagination-a"
-                pageLinkClassName="custom-pagination-a"
-                previousLabel={
-                    <div className="step-btn">
-                        <span>
-                            <FontAwesomeIcon icon={faCircleChevronRight} />
-                        </span>
-                        <p>السابق</p>
-                    </div>
-                }
-                previousClassName="prev-page"
-                nextClassName="next-page"
-                previousLinkClassName="text-decoration-none"
-                nextLinkClassName="text-decoration-none"
-                nextLabel={
-                    <div className="step-btn">
-                        <p>التالي</p>
-                        <span>
-                            <FontAwesomeIcon icon={faCircleChevronLeft} />
-                        </span>
-                    </div>
-                }
-                activeClassName="active"
-                disabledClassName="disabled"
-                initialPage={loadingPage - 1}
-            />
+        <div className="step-btn">
+            <span>
+                <FontAwesomeIcon icon={faCircleChevronLeft} />
+            </span>
+            <p>Previous</p>
+        </div>
+    );
+};
+const nextLabelEnglish = () => {
+    return (
+        <div className="step-btn">
+            <p>Next</p>
+            <span>
+                <FontAwesomeIcon icon={faCircleChevronRight} />
+            </span>
+        </div>
+    );
+};
+const previousLabelArabic = () => {
+    return (
+        <div className="step-btn">
+            <span>
+                <FontAwesomeIcon icon={faCircleChevronRight} />
+            </span>
+            <p>السابق</p>
+        </div>
+    );
+};
+const nextLabelArabic = () => {
+    return (
+        <div className="step-btn">
+            <p>التالي</p>
+            <span>
+                <FontAwesomeIcon icon={faCircleChevronLeft} />
+            </span>
         </div>
     );
 };
