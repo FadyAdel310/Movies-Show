@@ -36,7 +36,6 @@
 body {
     margin: 0;
     font-family: "Rubik", sans-serif !important;
-    height: 5000px;
     background: var(--background-gradient);
 }
 

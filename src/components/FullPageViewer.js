@@ -23,6 +23,8 @@ const FullPageViewer = ({ title }) => {
         trendState,
         topRatedMovies,
         topRatedState,
+        upComingMovies,
+        upComingState,
     } = useContext(api);
 
     let customState = null;
@@ -38,8 +40,8 @@ const FullPageViewer = ({ title }) => {
         customState = topRatedState;
         customMovies = topRatedMovies;
     } else if (title === "upComing") {
-        customState = trendState;
-        customMovies = trendingMovies;
+        customState = upComingState;
+        customMovies = upComingMovies;
     }
 
     const movies = [];

@@ -9,6 +9,7 @@ import axios from "axios";
 import Landing from "./components/Landing";
 import FullPageViewer from "./components/FullPageViewer";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -31,6 +32,8 @@ function App() {
             <FullPageViewer title="popular" />
             <FullPageViewer title="trending" />
             <FullPageViewer title="topRated" />
+            <FullPageViewer title="upComing" />
+            <Footer />
         </>
     );
 }

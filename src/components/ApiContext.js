@@ -16,6 +16,7 @@ const ApiContext = ({ children }) => {
     const [popularMovies, setPopularMovies] = useState(null);
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [topRatedMovies, setTopRatedMovies] = useState(null);
+    const [upComingMovies, setUpComingMovies] = useState(null);
     // =============================
     const [popularState, setPopularState] = useState({
         page: 1,
@@ -26,6 +27,10 @@ const ApiContext = ({ children }) => {
         type: "first",
     });
     const [topRatedState, setTopRatedState] = useState({
+        page: 1,
+        type: "first",
+    });
+    const [upComingState, setUpComingState] = useState({
         page: 1,
         type: "first",
     });
@@ -87,6 +92,16 @@ const ApiContext = ({ children }) => {
             });
     };
 
+    const getUpComingMovies = async (pageNumber) => {
+        axios
+            .get(
+                `https://api.themoviedb.org/3/movie/upcoming?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=${pageNumber}`
+            )
+            .then((response) => {
+                setUpComingMovies(response.data);
+            });
+    };
+
     useEffect(() => {
         getRandomMovie();
     }, []);
@@ -107,6 +122,10 @@ const ApiContext = ({ children }) => {
         getTopRatedMovies(topRatedState.page);
     }, [info.language, topRatedState.page]);
 
+    useEffect(() => {
+        getUpComingMovies(upComingState.page);
+    }, [info.language, upComingState.page]);
+
     return (
         <api.Provider
             value={{
@@ -117,9 +136,12 @@ const ApiContext = ({ children }) => {
                 trendState,
                 topRatedMovies,
                 topRatedState,
+                upComingMovies,
+                upComingState,
                 setPopularState,
                 setTrendState,
                 setTopRatedState,
+                setUpComingState,
                 setMovieById,
             }}
         >

@@ -4,6 +4,7 @@ import { api } from "./ApiContext";
 import "./Landing.css";
 import Rate from "./Rate";
 import WatchButton from "./WatchButton";
+import noImgPath from "../assets/No-Image-Full.png";
 import Likes from "./Likes";
 import {
     AttentionSeeker,
@@ -45,10 +46,14 @@ const Movie = ({ movie }) => {
     const { info } = useContext(global);
     if (movie !== null) {
         const baseImgUrl = "https://image.tmdb.org/t/p/original";
+        const customImgPath =
+            movie.poster_path === null || movie.poster_path === ""
+                ? noImgPath
+                : `${baseImgUrl}${movie.poster_path}`;
         return (
             <Fade>
                 <div className="Landing">
-                    <img src={`${baseImgUrl}${movie.poster_path}`} />
+                    <img src={customImgPath} />
                     <section>
                         <div className="container">
                             <Zoom>
