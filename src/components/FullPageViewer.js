@@ -12,6 +12,7 @@ import { api } from "./ApiContext";
 import { global } from "./GlobalContext";
 import noImgPath from "../assets/No-Image.png";
 import { Fade } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 
 const FullPageViewer = ({ title }) => {
     const { info } = useContext(global);
@@ -74,11 +75,10 @@ const FullPageViewer = ({ title }) => {
                 customPath = noImgPath;
             }
             const mov = (
-                <div
+                <Link
                     key={customMovies.results[i].id}
-                    custom-id={customMovies.results[i].id}
                     className="col-10 col-sm-4 col-md-3 col-lg-2"
-                    onClick={() => handleMovieClick(customMovies.results[i].id)}
+                    to={`/movie/${customMovies.results[i].id}`}
                 >
                     <Fade>
                         <div className="movie-card">
@@ -92,7 +92,7 @@ const FullPageViewer = ({ title }) => {
                             </h4>
                         </div>
                     </Fade>
-                </div>
+                </Link>
             );
             movies.push(mov);
         }

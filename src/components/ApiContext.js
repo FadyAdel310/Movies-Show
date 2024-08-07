@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { global } from "./GlobalContext";
+import { useParams } from "react-router-dom";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -36,6 +37,7 @@ const ApiContext = ({ children }) => {
     });
 
     const getRandomMovie = async () => {
+        // if (params.id === undefined) {
         axios
             .get(
                 `https://api.themoviedb.org/3/trending/movie/day?api_key=4f5e80c01207f943fc88c878e8b72839&language=${info.language}&page=1`
@@ -48,6 +50,7 @@ const ApiContext = ({ children }) => {
                 const movie = response.data.results[movieNum];
                 setMovieById(movie.id);
             });
+        // }
     };
 
     const setMovieById = (id) => {
@@ -58,6 +61,10 @@ const ApiContext = ({ children }) => {
             .then((response) => {
                 const movie = response.data;
                 setMovieToShow(movie);
+            })
+            .catch((err) => {
+                console.log(err, "Movie Id Not Valid ..");
+                window.location.href = "/";
             });
     };
 
@@ -103,10 +110,6 @@ const ApiContext = ({ children }) => {
     };
 
     useEffect(() => {
-        getRandomMovie();
-    }, []);
-
-    useEffect(() => {
         movieToShow !== null && setMovieById(movieToShow.id);
     }, [info.language]);
 
@@ -143,6 +146,7 @@ const ApiContext = ({ children }) => {
                 setTopRatedState,
                 setUpComingState,
                 setMovieById,
+                getRandomMovie,
             }}
         >
             {children}

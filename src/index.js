@@ -4,14 +4,23 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalContext } from "./components/GlobalContext";
 import { ApiContext } from "./components/ApiContext";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GetSpecificMovie from "./components/GetSpecificMovie";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <GlobalContext>
             <ApiContext>
-                <App />
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<App />}></Route>
+                        <Route
+                            path="/movie/:id"
+                            element={<GetSpecificMovie />}
+                        ></Route>
+                    </Routes>
+                </BrowserRouter>
             </ApiContext>
         </GlobalContext>
     </React.StrictMode>

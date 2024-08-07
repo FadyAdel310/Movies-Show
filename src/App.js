@@ -8,7 +8,13 @@ import { api } from "./components/ApiContext";
 import axios from "axios";
 import Landing from "./components/Landing";
 import FullPageViewer from "./components/FullPageViewer";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+    BrowserRouter,
+    Link,
+    Route,
+    Routes,
+    useParams,
+} from "react-router-dom";
 import Footer from "./components/Footer";
 
 function getRandomInt(min, max) {
@@ -17,14 +23,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function App() {
-    const { setMovieById } = useContext(api);
+    const { movieToShow, getRandomMovie } = useContext(api);
 
-    // setMovieById(1048241);
-    // setMovieById(533535);
+    const params = useParams();
     useEffect(() => {
-        // setMovieById(653346);
+        if (params.id === undefined) {
+            getRandomMovie();
+        }
     }, []);
-    // console.log("test");
+    
     return (
         <>
             <Header />
@@ -34,6 +41,7 @@ function App() {
             <FullPageViewer title="topRated" />
             <FullPageViewer title="upComing" />
             <Footer />
+           
         </>
     );
 }

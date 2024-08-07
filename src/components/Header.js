@@ -4,6 +4,7 @@ import "./header.css";
 import "../global.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const EnglishHeader = () => {
     const { changeLanguage, logoPath } = useContext(global);
@@ -16,9 +17,10 @@ const EnglishHeader = () => {
         <nav>
             <div className="container">
                 <div className="d-flex justify-content-between justify-content-lg-center align-items-center position-relative">
-                    <a href="/">
+                    <Link to={"/"}>
                         <img src={logoPath} className="logo" />
-                    </a>
+                    </Link>
+
                     <ul
                         className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center `}
                     >
@@ -83,13 +85,14 @@ const ArabicHeader = () => {
         <nav>
             <div className="container">
                 <div className="d-flex justify-content-between justify-content-lg-center align-items-center position-relative">
-                    <a href="/">
+                    <Link to="/">
                         <img
                             src={logoPath}
                             className="logo"
                             style={{ marginLeft: "25px" }}
                         />
-                    </a>
+                    </Link>
+
                     <ul
                         className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center`}
                     >
