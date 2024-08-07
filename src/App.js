@@ -23,15 +23,12 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function App() {
-    const { movieToShow, getRandomMovie } = useContext(api);
+    const { getRandomMovie } = useContext(api);
 
-    const params = useParams();
     useEffect(() => {
-        if (params.id === undefined) {
-            getRandomMovie();
-        }
+        getRandomMovie();
     }, []);
-    
+
     return (
         <>
             <Header />
@@ -41,7 +38,6 @@ function App() {
             <FullPageViewer title="topRated" />
             <FullPageViewer title="upComing" />
             <Footer />
-           
         </>
     );
 }

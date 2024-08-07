@@ -22,7 +22,7 @@ const EnglishHeader = () => {
                     </Link>
 
                     <ul
-                        className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center `}
+                        className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center`}
                     >
                         <li className="p-2 fs-4">
                             <a className="text-decoration-none" href="#popular">
@@ -54,9 +54,11 @@ const EnglishHeader = () => {
                             </a>
                         </li>
                         <div className="tools">
-                            <li className="pb-2 px-2 fs-3 search-icon">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </li>
+                            <Link to={"/search"}>
+                                <li className="pb-2 px-2 fs-3 search-icon">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                </li>
+                            </Link>
                             <li
                                 onClick={() => changeLanguage()}
                                 className="py-1 px-2 fs-6 language-icon"
@@ -127,9 +129,11 @@ const ArabicHeader = () => {
                         </li>
 
                         <div className="tools">
-                            <li className="pb-2 px-2 fs-3 search-icon">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                            </li>
+                            <Link to={"/search"}>
+                                <li className="pb-2 px-2 fs-3 search-icon">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                </li>
+                            </Link>
                             <li
                                 onClick={() => changeLanguage()}
                                 className="py-1 px-2 fs-6 language-icon"

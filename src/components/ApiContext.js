@@ -18,6 +18,7 @@ const ApiContext = ({ children }) => {
     const [trendingMovies, setTrendingMovies] = useState(null);
     const [topRatedMovies, setTopRatedMovies] = useState(null);
     const [upComingMovies, setUpComingMovies] = useState(null);
+    const [searchingMovies, setSearchingMovies] = useState(null);
     // =============================
     const [popularState, setPopularState] = useState({
         page: 1,
@@ -32,6 +33,11 @@ const ApiContext = ({ children }) => {
         type: "first",
     });
     const [upComingState, setUpComingState] = useState({
+        page: 1,
+        type: "first",
+    });
+    const [searchState, setSearchState] = useState({
+        word: "",
         page: 1,
         type: "first",
     });
@@ -109,6 +115,18 @@ const ApiContext = ({ children }) => {
             });
     };
 
+    const getSearchingMovies = async (pageNumber, word) => {
+        //
+        axios
+            //
+            .get(
+                `https://api.themoviedb.org/3/search/movie?api_key=4f5e80c01207f943fc88c878e8b72839&query=${word}&include_adult=false&language=${info.language}&page=${pageNumber}`
+            )
+            .then((response) => {
+                setSearchingMovies(response.data);
+            });
+    };
+
     useEffect(() => {
         movieToShow !== null && setMovieById(movieToShow.id);
     }, [info.language]);
@@ -129,6 +147,14 @@ const ApiContext = ({ children }) => {
         getUpComingMovies(upComingState.page);
     }, [info.language, upComingState.page]);
 
+    useEffect(() => {
+        if (searchState.word !== "") {
+            getSearchingMovies(searchState.page, searchState.word);
+        } else {
+            setSearchingMovies(null);
+        }
+    }, [info.language, searchState.page, searchState.word]);
+
     return (
         <api.Provider
             value={{
@@ -141,12 +167,16 @@ const ApiContext = ({ children }) => {
                 topRatedState,
                 upComingMovies,
                 upComingState,
+                searchingMovies,
+                searchState,
                 setPopularState,
                 setTrendState,
                 setTopRatedState,
                 setUpComingState,
+                setSearchState,
                 setMovieById,
                 getRandomMovie,
+                getSearchingMovies,
             }}
         >
             {children}

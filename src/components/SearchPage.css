@@ -1,0 +1,31 @@
+.search-input {
+    padding-top: 110px;
+    padding-bottom: 25px;
+}
+
+.search-input input {
+    background-color: var(--transparent);
+    color: var(--white);
+    border: none;
+    outline: none;
+    text-align: center;
+    transition: var(--main-transition);
+    border-bottom: 2px solid var(--main-blue);
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    caret-color: var(--main-blue);
+}
+
+.search-input input::placeholder {
+    color: var(--transparent-white);
+    opacity: 1;
+    transition: var(--main-transition);
+}
+
+.search-input input:focus {
+    border-color: var(--secondary-blue);
+}
+.search-input input:focus::placeholder {
+    opacity: 0;
+}

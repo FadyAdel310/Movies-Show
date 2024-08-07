@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalContext } from "./components/GlobalContext";
 import { ApiContext } from "./components/ApiContext";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import GetSpecificMovie from "./components/GetSpecificMovie";
+import SearchPage from "./components/SearchPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -19,6 +20,7 @@ root.render(
                             path="/movie/:id"
                             element={<GetSpecificMovie />}
                         ></Route>
+                        <Route path="/search" element={<SearchPage />}></Route>
                     </Routes>
                 </BrowserRouter>
             </ApiContext>

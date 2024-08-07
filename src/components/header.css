@@ -87,6 +87,7 @@ nav button {
     nav .links {
         position: absolute;
         opacity: 0;
+        visibility: hidden;
         background-color: var(--transparent-black);
         margin: 0;
         bottom: 0;
@@ -102,6 +103,7 @@ nav button {
     }
 
     nav .mobile-menu-true {
+        visibility: visible;
         opacity: 1;
         height: fit-content;
     }

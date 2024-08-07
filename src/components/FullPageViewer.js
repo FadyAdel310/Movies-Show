@@ -45,6 +45,8 @@ const FullPageViewer = ({ title }) => {
         customMovies = upComingMovies;
     }
 
+    console.log(title);
+
     const movies = [];
     let start = 0;
     let end = 0;
@@ -55,11 +57,6 @@ const FullPageViewer = ({ title }) => {
         start = 10;
         end = 20;
     }
-
-    const handleMovieClick = (id) => {
-        setMovieById(id);
-        window.scrollTo({ top: 0 });
-    };
 
     if (customMovies !== null) {
         const baseImgUrl = "https://image.tmdb.org/t/p/w500";
