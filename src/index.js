@@ -4,7 +4,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalContext } from "./components/GlobalContext";
 import { ApiContext } from "./components/ApiContext";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import {
+    BrowserRouter,
+    HashRouter,
+    Route,
+    Routes,
+    useParams,
+} from "react-router-dom";
 import GetSpecificMovie from "./components/GetSpecificMovie";
 import SearchPage from "./components/SearchPage";
 
@@ -13,7 +19,7 @@ root.render(
     <React.StrictMode>
         <GlobalContext>
             <ApiContext>
-                <BrowserRouter>
+                <HashRouter>
                     <Routes>
                         <Route path="/" element={<App />}></Route>
                         <Route
@@ -22,7 +28,7 @@ root.render(
                         ></Route>
                         <Route path="/search" element={<SearchPage />}></Route>
                     </Routes>
-                </BrowserRouter>
+                </HashRouter>
             </ApiContext>
         </GlobalContext>
     </React.StrictMode>
