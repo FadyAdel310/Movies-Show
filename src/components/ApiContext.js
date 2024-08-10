@@ -153,7 +153,7 @@ const ApiContext = ({ children }) => {
         } else {
             setSearchingMovies(null);
         }
-    }, [info.language, searchState.page, searchState.word]);
+    }, [info.language, searchState.page, searchState.word, searchState.type]);
 
     return (
         <api.Provider

@@ -29,3 +29,12 @@
 .search-input input:focus::placeholder {
     opacity: 0;
 }
+
+.no-films {
+    text-align: center;
+    color: var(--gray);
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -26,6 +26,7 @@ const CustomPagination = ({ title, customState, customMovies }) => {
         setPopularState,
         setTopRatedState,
         setUpComingState,
+        setSearchState,
     } = useContext(api);
 
     let setCustomState = null;
@@ -38,51 +39,55 @@ const CustomPagination = ({ title, customState, customMovies }) => {
         setCustomState = setTopRatedState;
     } else if (title === "upComing") {
         setCustomState = setUpComingState;
+    } else {
+        setCustomState = setSearchState;
     }
 
     const handlePageClick = (event) => {
         const pageNumber = event.selected + 1;
         const { value, type } = getApiPageFromPaginationPage(pageNumber);
         if (customMovies !== null) {
-            setCustomState({ page: value, type: type });
+            setCustomState({ ...customState, page: value, type: type });
         }
     };
 
     const paginationPagesCount =
         customMovies !== null
-            ? customMovies.total_pages > 500
+            ? customMovies.total_results > 10000
                 ? 1000
-                : customMovies.total_pages * 2
+                : Math.ceil(customMovies.total_results / 10)
             : 0;
 
-    if (info.language === "en-US") {
-        return (
-            <>
-                {paginationPagesCount !== 0 && (
-                    <Pagination
-                        handlePageClick={handlePageClick}
-                        customState={customState}
-                        pageCount={paginationPagesCount}
-                        previousLabelValue={previousLabelEnglish()}
-                        nextLabelValue={nextLabelEnglish()}
-                    />
-                )}
-            </>
-        );
-    } else {
-        return (
-            <div dir="rtl">
-                {paginationPagesCount !== 0 && (
-                    <Pagination
-                        handlePageClick={handlePageClick}
-                        customState={customState}
-                        pageCount={paginationPagesCount}
-                        previousLabelValue={previousLabelArabic()}
-                        nextLabelValue={nextLabelArabic()}
-                    />
-                )}
-            </div>
-        );
+    if (customMovies !== null) {
+        if (info.language === "en-US") {
+            return (
+                <>
+                    {paginationPagesCount !== 0 && (
+                        <Pagination
+                            handlePageClick={handlePageClick}
+                            customState={customState}
+                            pageCount={paginationPagesCount}
+                            previousLabelValue={previousLabelEnglish()}
+                            nextLabelValue={nextLabelEnglish()}
+                        />
+                    )}
+                </>
+            );
+        } else {
+            return (
+                <div dir="rtl">
+                    {paginationPagesCount !== 0 && (
+                        <Pagination
+                            handlePageClick={handlePageClick}
+                            customState={customState}
+                            pageCount={paginationPagesCount}
+                            previousLabelValue={previousLabelArabic()}
+                            nextLabelValue={nextLabelArabic()}
+                        />
+                    )}
+                </div>
+            );
+        }
     }
 };
 
@@ -101,7 +106,6 @@ const Pagination = ({
     } else if (customState.type === "last") {
         loadingPage = customState.page * 2;
     }
-
     return (
         <ReactPaginate
             breakLabel="..."

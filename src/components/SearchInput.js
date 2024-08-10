@@ -5,11 +5,12 @@ import { api } from "./ApiContext";
 
 const HandleSearch = (event, setSearchState, searchState) => {
     const searchWord = event.target.value;
-    setSearchState({ ...searchState, word: searchWord });
+    setSearchState({ page: 1, type: "first", word: searchWord });
 };
 
 const SearchInput = ({ language }) => {
     const { setSearchState, searchState } = useContext(api);
+    // console.log(searchState);
     const word = language === "en-US" ? "search here .." : "ابحث هنا ..";
     return (
         <div className="search-input">
