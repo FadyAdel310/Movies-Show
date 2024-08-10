@@ -13,7 +13,7 @@ const EnglishHeader = () => {
         if (mobileShow) setMobileShow(false);
         else setMobileShow(true);
     };
-    console.log("fe");
+
     return (
         <nav>
             <div className="container">
@@ -26,19 +26,25 @@ const EnglishHeader = () => {
                         className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center`}
                     >
                         <li className="p-2 fs-4">
-                            <Link to={"#popular"}>
-                                <a
-                                    className="text-decoration-none"
-                                    // href="#popular"
-                                >
-                                    Popular
-                                </a>
-                            </Link>
+                            <a
+                                className="text-decoration-none"
+                                onClick={() => {
+                                    document
+                                        .getElementById("popular")
+                                        .scrollIntoView(true);
+                                }}
+                            >
+                                Popular
+                            </a>
                         </li>
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#trending"
+                                onClick={() => {
+                                    document
+                                        .getElementById("trending")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 Trending
                             </a>
@@ -46,7 +52,11 @@ const EnglishHeader = () => {
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#topRated"
+                                onClick={() => {
+                                    document
+                                        .getElementById("topRated")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 Top Rated
                             </a>
@@ -54,7 +64,11 @@ const EnglishHeader = () => {
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#upComing"
+                                onClick={() => {
+                                    document
+                                        .getElementById("upComing")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 Up Coming
                             </a>
@@ -105,14 +119,25 @@ const ArabicHeader = () => {
                         className={`links mobile-menu-${mobileShow} d-flex flex-column flex-lg-row justify-content-center align-items-start align-items-lg-center`}
                     >
                         <li className="p-2 fs-4">
-                            <a className="text-decoration-none" href="#popular">
+                            <a
+                                className="text-decoration-none"
+                                onClick={() => {
+                                    document
+                                        .getElementById("popular")
+                                        .scrollIntoView(true);
+                                }}
+                            >
                                 الشائع
                             </a>
                         </li>
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#trending"
+                                onClick={() => {
+                                    document
+                                        .getElementById("trending")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 المحتوي الرائج
                             </a>
@@ -120,7 +145,11 @@ const ArabicHeader = () => {
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#topRated"
+                                onClick={() => {
+                                    document
+                                        .getElementById("topRated")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 الأعلي تقييما
                             </a>
@@ -128,7 +157,11 @@ const ArabicHeader = () => {
                         <li className="p-2 fs-4">
                             <a
                                 className="text-decoration-none"
-                                href="#upComing"
+                                onClick={() => {
+                                    document
+                                        .getElementById("upComing")
+                                        .scrollIntoView(true);
+                                }}
                             >
                                 القادم
                             </a>

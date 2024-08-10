@@ -10,8 +10,6 @@ import "./page.css";
 import CustomPagination from "./CustomPagination";
 import { api } from "./ApiContext";
 import { global } from "./GlobalContext";
-import { Fade } from "react-awesome-reveal";
-import { Link } from "react-router-dom";
 import Movies from "./Movies";
 
 const FullPageViewer = ({ title }) => {
