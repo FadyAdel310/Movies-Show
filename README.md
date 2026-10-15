@@ -1,73 +1,219 @@
-# Getting Started with Create React App
+# 🎬 Movies Show
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-<h3>
-  <a href="https://fadyadel310.github.io/Movies-Show/">👉 Live Link</a>
-</h3>
+A responsive movie discovery web application built with React that allows users to explore movies, search for titles, view movie details, and discover popular, trending, top-rated, and upcoming releases.
 
-## Available Scripts
+**[Live Demo](https://fadyadel310.github.io/Movies-Show/)** · **[Source Code](https://github.com/FadyAdel310/Movies-Show)**
 
-In the project directory, you can run:
+## 📌 Table of Contents
 
-### `npm start`
+- [Overview](#-overview)
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [API Integration](#-api-integration)
+- [Getting Started](#-getting-started)
+- [Project Structure](#-project-structure)
+- [Available Scripts](#-available-scripts)
+- [Deployment](#-deployment)
+- [Future Improvements](#-future-improvements)
+- [Author](#-author)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🌟 Overview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Movies Show is a React-based web application designed to provide an interactive movie discovery experience. It retrieves movie information from **The Movie Database (TMDB) API** and organizes titles into different categories to help users discover movies and explore their details.
 
-### `npm test`
+The application uses React Hooks and Context API to manage application state and share data between components. React Router enables navigation between the home page, search results, and individual movie pages.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The project also supports English and Arabic interfaces, along with dark and light theme options.
 
-### `npm run build`
+## ✨ Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Movie Discovery:** Explore popular, trending, top-rated, and upcoming movies.
+- **Dynamic Featured Movie:** Display a randomly selected trending movie in the featured section.
+- **Movie Search:** Search for movies by title and view matching results.
+- **Movie Details:** Navigate to individual movie pages using movie IDs.
+- **Pagination:** Navigate through multiple pages of movie listings and search results.
+- **Multilingual Interface:** Switch between English and Arabic.
+- **Theme Switching:** Toggle between dark and light themes.
+- **API Integration:** Retrieve movie information dynamically from TMDB.
+- **Responsive Interface:** Use Bootstrap-based styling and responsive layouts.
+- **Interactive UI:** Enhance the user experience with animated interface elements and Font Awesome icons.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Technology | Purpose |
+|---|---|
+| HTML5 | Application structure |
+| CSS3 | Styling and layouts |
+| JavaScript (ES6+) | Application logic and interactivity |
+| React 18 | Component-based user interface |
+| React Hooks | State management and side effects |
+| Context API | Shared application state |
+| React Router DOM | Client-side navigation |
+| Axios | HTTP requests and API integration |
+| Bootstrap 5 | Responsive styling and UI components |
+| React Bootstrap | Bootstrap components for React |
+| React Paginate | Pagination controls |
+| React Awesome Reveal | UI animations |
+| Font Awesome | Icons |
+| TMDB API | Movie data source |
+| Git & GitHub | Version control and source code hosting |
 
-### `npm run eject`
+## 🔌 API Integration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Movies Show uses the [TMDB API](https://developer.themoviedb.org/docs) to retrieve movie information.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application uses TMDB endpoints for:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Trending Movies:** Retrieve movies trending daily.
+- **Popular Movies:** Retrieve currently popular movies.
+- **Top-Rated Movies:** Retrieve movies with high ratings.
+- **Upcoming Movies:** Retrieve upcoming releases.
+- **Movie Search:** Find movies based on a search query.
+- **Movie Details:** Retrieve information about a specific movie.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+API requests are handled using Axios. The application uses React Context and state to distribute the retrieved data to the relevant components.
 
-## Learn More
+### API Documentation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For endpoint details and API access requirements, visit the [official TMDB developer documentation](https://developer.themoviedb.org/docs).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Getting Started
 
-### Code Splitting
+Follow these steps to run the project locally.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Prerequisites
 
-### Analyzing the Bundle Size
+Make sure you have installed:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Node.js](https://nodejs.org/)
+- npm, which is included with Node.js
+- Git
 
-### Making a Progressive Web App
+### 1. Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+git clone https://github.com/FadyAdel310/Movies-Show.git
+```
 
-### Advanced Configuration
+### 2. Navigate to the Project Directory
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+cd Movies-Show
+```
 
-### Deployment
+### 3. Install Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm install
+```
 
-### `npm run build` fails to minify
+### 4. Start the Development Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start
+```
+
+The application will start in development mode. Open the following address in your browser:
+
+[http://localhost:3000](http://localhost:3000)
+
+The development server automatically reloads the application when supported source files change.
+
+**API configuration:** The current source code contains the TMDB API key in `src/components/ApiContext.js`. Before redistributing or deploying the project, move the key into an environment variable and update the API request code to read it. For example, in a Create React App project, use `REACT_APP_TMDB_API_KEY` in a local `.env` file and reference `process.env.REACT_APP_TMDB_API_KEY` in the application. Do not commit your `.env` file or expose a new private credential in a public repository.
+
+## 📂 Project Structure
+
+The main project structure is organized as follows:
+
+```text
+Movies-Show/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── ApiContext.js
+│   │   ├── GlobalContext.js
+│   │   ├── GetSpecificMovie.js
+│   │   ├── SearchPage.js
+│   │   ├── Header.js
+│   │   ├── Landing.js
+│   │   ├── Movies.js
+│   │   ├── FullPageViewer.js
+│   │   └── ...
+│   ├── App.js
+│   ├── App.css
+│   ├── global.css
+│   └── index.js
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
+```
+
+*Note: The tree highlights the main files and components; it is not an exhaustive listing of every file in the repository.*
+
+### Key Components
+
+- **`App.js`:** Renders the main application layout, including the header, featured movie section, movie categories, and footer.
+- **`index.js`:** Initializes the React application, configures the application contexts, and defines the main routes.
+- **`ApiContext.js`:** Handles movie API requests and shares movie data and pagination state through React Context.
+- **`GlobalContext.js`:** Manages global interface preferences, including language and theme.
+- **`SearchPage.js`:** Displays search results and pagination, including a message when no movies match the search.
+- **`GetSpecificMovie.js`:** Handles navigation to a page associated with a specific movie ID.
+- **`Header.js`:** Provides the application's header and navigation interface.
+- **`Landing.js`:** Renders the featured movie section.
+- **`FullPageViewer.js`:** Displays the application's movie category sections.
+
+## 📜 Available Scripts
+
+The following commands are defined in `package.json`:
+
+| Command | Description |
+|---|---|
+| `npm start` | Starts the local development server. |
+| `npm run build` | Creates an optimized production build in the `build` directory. |
+| `npm test` | Runs the configured test runner. |
+| `npm run deploy` | Runs the deployment script configured for GitHub Pages. |
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+## 🌐 Deployment
+
+The project is configured for deployment to GitHub Pages.
+
+**Live application:** [Movies Show](https://fadyadel310.github.io/Movies-Show/)
+
+To deploy using the configured script:
+
+```bash
+npm run deploy
+```
+
+The deployment script publishes the production build to GitHub Pages. Ensure the repository's GitHub Pages settings and deployment permissions are configured correctly.
+
+## 🔮 Future Improvements
+
+Potential enhancements for future versions include:
+
+- Add a dedicated favorites or watchlist feature.
+- Improve loading indicators, error handling, and empty states.
+- Add automated tests for important components and user interactions.
+- Improve accessibility and keyboard navigation.
+- Add filters for genres, release years, and ratings.
+- Improve API credential management and configuration.
+
+These are potential enhancements rather than claims about existing functionality.
+
+## 👨‍💻 Author
+
+**Fady Adel Awad**
+
+- GitHub: [@FadyAdel310](https://github.com/FadyAdel310)
+- LinkedIn: [Fady Adel](https://www.linkedin.com/in/fady-adel-b0430b428/)
+
+---
+
+*Built with React, JavaScript, and TMDB API.*
